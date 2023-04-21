@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+
+Sitemap: https://LiquidAmmonia.github.io/sitemap.xml
