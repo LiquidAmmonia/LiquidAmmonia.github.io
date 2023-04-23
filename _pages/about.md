@@ -9,8 +9,8 @@ profile:
   image: cya.png
   image_circular: true # crops the image to make it circular
   address: >
-    <p>cya17[at]stu[dot]pku[dot]edu[dot]cn</p>
-    <p>Haidian, Beijing, Peking University</p>
+    <p>cya17[at]stu.pku.edu.cn</p>
+    <p>Haidian, Beijing, China</p>
 
 news: false  # includes a list of news items
 latest_posts: false  # includes a list of the newest posts
