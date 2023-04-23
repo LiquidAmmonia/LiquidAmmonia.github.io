@@ -72,9 +72,6 @@
               
 
               <!-- Other pages -->
-              <li class="nav-item ">
-                <a class="nav-link" href="/publications/">publications</a>
-              </li>
 
               <!-- Toogle theme mode -->
               <li class="toggle-container">
@@ -153,7 +150,7 @@
 </figure>
 
             <div class="address">
-              <p>cya17 [at] stu [dot] pku [dot] edu [dot] cn</p> <p>Haidian, Beijing, Peking University</p>
+              <p>cya17[at]stu[dot]pku[dot]edu[dot]cn</p> <p>Haidian, Beijing, Peking University</p>
 
             </div>
           </div>
@@ -172,7 +169,110 @@
           <!-- Selected papers -->
           <h2><a href="/publications/" style="color: inherit;">selected publications</a></h2>
           <div class="publications">
-            <ol class="bibliography"></ol>
+            <ol class="bibliography"><li><!-- _layouts/bib.html -->
+      <div class="row">
+        <div class="col-sm-2 abbr"></div>
+
+        <!-- Entry bib key -->
+        <div id="ma2020structure" class="col-sm-8">
+        <!-- Title -->
+        <div class="title">Structure-preserving super resolution with gradient guidance</div>
+        <!-- Author -->
+        <div class="author">
+        
+
+        Cheng Ma,&nbsp;Yongming Rao,&nbsp;<em>Yean Cheng</em>, and
+          <span
+              class="more-authors"
+              title="click to view 3 more authors"
+              onclick="
+                var element = $(this);
+                element.attr('title', '');
+                var more_authors_text = element.text() == '3 more authors' ? 'Ce Chen, Jiwen Lu, Jie Zhou' : '3 more authors';
+                var cursorPosition = 0;
+                var textAdder = setInterval(function(){
+                  element.text(more_authors_text.substring(0, cursorPosition + 1));
+                  if (++cursorPosition == more_authors_text.length){
+                    clearInterval(textAdder);
+                  }
+              }, '10');
+              "
+          >3 more authors</span></div>
+
+        <!-- Journal/Book title and date -->
+        
+        
+        <div class="periodical">
+          <em>In Proceedings of the IEEE/CVF conference on computer vision and pattern recognition</em>, 2020
+        </div>
+        <div class="periodical">
+          
+        </div>
+
+          <!-- Links/Buttons -->
+          <div class="links">
+          </div>
+          
+          <div class="badges">
+            <span class="altmetric-embed" data-hide-no-mentions="true" data-hide-less-than="15" data-badge-type="2" data-badge-popover="right"
+              
+              ></span>
+              <span class="__dimensions_badge_embed__"
+              
+                data-pmid=""
+              
+              data-hide-zero-citations="true" data-style="small_rectangle" data-legend="hover-right" style="margin-bottom: 3px;"></span>
+          </div>
+
+          
+        </div>
+      </div>
+</li>
+<li><!-- _layouts/bib.html -->
+      <div class="row">
+        <div class="col-sm-2 abbr"></div>
+
+        <!-- Entry bib key -->
+        <div id="9927491" class="col-sm-8">
+        <!-- Title -->
+        <div class="title">Fault Diagnosis of Energy Networks: A Graph Embedding Learning Approach</div>
+        <!-- Author -->
+        <div class="author">
+        
+
+        Jingfei Zhang,&nbsp;<em>Yean Cheng</em>,&nbsp;and&nbsp;Xiao He</div>
+
+        <!-- Journal/Book title and date -->
+        
+        
+        <div class="periodical">
+          <em>IEEE Transactions on Instrumentation and Measurement</em>, 2022
+        </div>
+        <div class="periodical">
+          
+        </div>
+
+          <!-- Links/Buttons -->
+          <div class="links">
+          </div>
+          
+          <div class="badges">
+            <span class="altmetric-embed" data-hide-no-mentions="true" data-hide-less-than="15" data-badge-type="2" data-badge-popover="right"
+              
+                data-doi="10.1109/TIM.2022.3216669"
+              
+              ></span>
+              <span class="__dimensions_badge_embed__"
+              
+                data-doi="10.1109/TIM.2022.3216669"
+              
+              data-hide-zero-citations="true" data-style="small_rectangle" data-legend="hover-right" style="margin-bottom: 3px;"></span>
+          </div>
+
+          
+        </div>
+      </div>
+</li></ol>
           </div>
 
 
