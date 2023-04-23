@@ -2,11 +2,11 @@
 layout: about
 title: about
 permalink: /
-subtitle: /
+subtitle: 
 
 profile:
   align: right
-  image: cya.jpg
+  image: cya.png
   image_circular: true # crops the image to make it circular
   address: 
 
