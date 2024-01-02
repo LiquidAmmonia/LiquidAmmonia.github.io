@@ -6,7 +6,7 @@ subtitle:
 
 profile:
   align: right
-  image: cya.png
+  image: cya2024cut.png
   image_circular: true # crops the image to make it circular
   address: >
     <p>cya17[at]stu.pku.edu.cn</p>
