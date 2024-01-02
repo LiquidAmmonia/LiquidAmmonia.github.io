@@ -115,23 +115,23 @@
     <source 
         class="responsive-img-srcset"
         media="(max-width: 480px)" 
-        srcset="/assets/img/cya-480.webp"
+        srcset="/assets/img/cya2024cut-480.webp"
       />
     <source 
         class="responsive-img-srcset"
         media="(max-width: 800px)" 
-        srcset="/assets/img/cya-800.webp"
+        srcset="/assets/img/cya2024cut-800.webp"
       />
     <source 
         class="responsive-img-srcset"
         media="(max-width: 1400px)" 
-        srcset="/assets/img/cya-1400.webp"
+        srcset="/assets/img/cya2024cut-1400.webp"
       />
     
 
     <!-- Fallback to the original file -->
     <img 
-      src="/assets/img/cya.png"
+      src="/assets/img/cya2024cut.png"
       class="img-fluid z-depth-1 rounded-circle"  
       width="auto" 
       height="auto" 
@@ -139,7 +139,7 @@
        
        
        
-      alt="cya.png" 
+      alt="cya2024cut.png" 
        
       
       onerror="this.onerror=null; $('.responsive-img-srcset').remove();"
@@ -180,23 +180,23 @@
     <source 
         class="responsive-img-srcset"
         media="(max-width: 480px)" 
-        srcset="/assets/img/publication_preview/colonerf-480.webp"
+        srcset="/assets/img/publication_preview/colornerf-480.webp"
       />
     <source 
         class="responsive-img-srcset"
         media="(max-width: 800px)" 
-        srcset="/assets/img/publication_preview/colonerf-800.webp"
+        srcset="/assets/img/publication_preview/colornerf-800.webp"
       />
     <source 
         class="responsive-img-srcset"
         media="(max-width: 1400px)" 
-        srcset="/assets/img/publication_preview/colonerf-1400.webp"
+        srcset="/assets/img/publication_preview/colornerf-1400.webp"
       />
     
 
     <!-- Fallback to the original file -->
     <img 
-      src="/assets/img/publication_preview/colonerf.png"
+      src="/assets/img/publication_preview/colornerf.png"
       class="preview z-depth-1 rounded"  
       width="auto" 
       height="auto" 
@@ -204,7 +204,7 @@
        
        
        
-      alt="colonerf.png" 
+      alt="colornerf.png" 
        
       
       onerror="this.onerror=null; $('.responsive-img-srcset').remove();"
@@ -223,7 +223,23 @@
         <div class="author">
         
 
-        </div>
+        <em>Yean Cheng</em>,&nbsp;Renjie Wan,&nbsp;Shuchen Weng, and
+          <span
+              class="more-authors"
+              title="click to view 3 more authors"
+              onclick="
+                var element = $(this);
+                element.attr('title', '');
+                var more_authors_text = element.text() == '3 more authors' ? 'Chengxuan Zhu, Yakun Chang, Boxin Shi' : '3 more authors';
+                var cursorPosition = 0;
+                var textAdder = setInterval(function(){
+                  element.text(more_authors_text.substring(0, cursorPosition + 1));
+                  if (++cursorPosition == more_authors_text.length){
+                    clearInterval(textAdder);
+                  }
+              }, '10');
+              "
+          >3 more authors</span></div>
 
         <!-- Journal/Book title and date -->
         
