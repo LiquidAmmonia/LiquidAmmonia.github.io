@@ -402,7 +402,7 @@ If you have a different question, please ask using [Discussions](https://github.
    posts for a specific post. This is usually caused by [empty or minimal blog posts](https://github.com/jekyll/classifier-reborn/issues/64)
    without meaningful words (i.e. only [stop words](https://en.wikipedia.org/wiki/Stop_words)) or even
    [specific characters](https://github.com/jekyll/classifier-reborn/issues/194) you used in your posts. Also, the calculus for similar posts are
-   made for every `post`, which means every page that uses `layout: post`, including the announcements. To change this behavior, simply add
+   made for every `post`, which means every page that uses `layout: post`, including the ncements. To change this behavior, simply add
    `related_posts: false` to the front matter of the page you don't want to display related posts on.
 
 ## Features
