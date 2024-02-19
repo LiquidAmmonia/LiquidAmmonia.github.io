@@ -23,6 +23,10 @@
   doi={10.1109/TPAMI.2023.3328453},
   selected={true},
   preview={split.png},
+  bibtex_show={true},
+  abstract={This paper proposes a novel pipeline to estimate a non-parametric environment map with high dynamic range from a single human face image. Lighting-independent and -dependent intrinsic images of the face are first estimated separately in a cascaded network. The influence of face geometry on the two lighting-dependent intrinsics, diffuse shading and specular reflection, are further eliminated by distributing the intrinsics pixel-wise onto spherical representations using the surface normal as indices. This results in two representations simulating images of a diffuse sphere and a glossy sphere under the input scene lighting. Taking into account the distinctive nature of light sources and ambient terms, we further introduce a two-stage lighting estimator to predict both accurate and realistic lighting from these two representations. Our model is trained supervisedly on a large-scale and high-quality synthetic face image dataset. We demonstrate that our method allows accurate and detailed lighting estimation and intrinsic decomposition, outperforming state-of-the-art methods both qualitatively and quantitatively on real face images.},
+  code={https://github.com/costrice/split},
+  html={https://ieeexplore.ieee.org/document/10301699}
   }
 
 
@@ -36,7 +40,11 @@
   pages={1-12},
   selected={true},
   preview={GAT_GRU_MASSIVE.png},
-  doi={10.1109/TASE.2023.3281394}}
+  doi={10.1109/TASE.2023.3281394}, 
+  bibtex_show={true},
+  abstract={In order to ensure the safe and reliable operation of the energy system, real-time fault diagnosis technology is indispensable. Energy systems are typically complex systems consisting of multiple subsystems that are coupled with each other. Before and after the occurrence of a fault, the system is generally in an abnormal or even harsh environment, which may cause a large number of randomly missing measurement data and make the application of fault diagnosis technology extremely difficult. In this paper, the graph attention network (GAT) is improved by a Gaussian mixture model (GMM) for incomplete-data representation. The iteratively updated expectation of the GMM serves as the characterization of missing data, which significantly improves the ability to fill in missing data. The GAT fuses multi-source data according to the topology structure so as to comprehensively exploit the spatial information. The gated recurrent units (GRU) extract dynamic fault information from embedded spatial features and classify the time series into various fault types. Moreover, we propose a loss function in the form of weighted focal loss so that the fault-class imbalance issue brought by the data deficiency can be solved. The proposed uniform spatial-temporal graph neural network classification framework together with the GMM (GM-STGNN) can effectively improve fault diagnosis performance and is applied on an experimental platform of an authentic industrial estate. Results of comparative experiments under different conditions of both sufficient and deficient data illustrate the efficiency and advancement of the proposed method. Note to Practitioners —This paper presents a fault diagnosis method for large-scale energy systems with massive missing data. The proposed GM-STGNN framework can be applied in complex energy networks consisting of coupling subsystems, such as power grids, heating networks, and gas networks. With an incomplete-data representation mechanism, the proposed method utilizes topology information to comprehensively exploit spatial features, it also recurrently transmits historical embedded features and extracts dynamic fault characteristics. Therefore, it can effectively improve energy-network fault identification accuracy when more than half of the sample exists vacant values randomly. In the training procedure, after pre-setting the model scale, data acquired by multi-source sensors is put into the model according to the real topology structure, and corresponding fault labels serve as the supervision. The statistical characteristics of missing data are learned with neural-network parameters until the loss converges. In practical application, the sampling data is divided by a time window of a few seconds. The missing data is mitigated by the estimated expectation of the GMM. Therefore, real-time fault classification results can be obtained with high accuracy. The effectiveness of the proposed method is illustrated by fault diagnosis of a typical distributed heating network under the noise influence. Benefiting from the ability to learn fault knowledge, the proposed method can be easily applied to new scenarios where the process data and topology structure of the system are known.}, 
+  html={https://ieeexplore.ieee.org/abstract/document/10374148},
+}
 
 @ARTICLE{9927491,
   author={Zhang, Jingfei and Cheng, Yean and He, Xiao},
@@ -49,6 +57,9 @@
   doi={10.1109/TIM.2022.3216669}, 
   selected={true},
   preview={GAT_GRU.png},
+  bibtex_show={true},
+  abstract={For industrial parks containing energy systems, fault diagnosis technology is of great significance for their safe operation. In recent years, the topology of energy systems has become more complex due to the use of technologies such as cogeneration, leading to multienergy coupling. Critical equipment and user nodes in these complex energy networks are vulnerable to a lack of sensor data or non-idealities in the measurement environment. There is an urgent need for a unified and robust fault-diagnosis framework for the overall system to identify faults even under non-ideal data conditions. In this article, to address the problem of fault identification and state prediction, a novel deep learning model is constructed based on graph-embedded recurrent neural networks (RNNs) with self-attentional layers. Unstructured data are put into the graph neural network to extract common spatial features. An additive attention mechanism is implemented in the graph attention network (GAT) to integrate multiscale node information. The graph operator is computed within a gated recurrent unit (GRU) that captures the full range of temporal features. In addition, loss functions are introduced for fault identification and state prediction. Data from an industrial park experiment platform are used for fault identification experiments. The advantages of the proposed approach are illustrated by comparative experiments with different levels of missing data.},
+  html={https://ieeexplore.ieee.org/document/9927491}
 }
 
 
@@ -75,8 +86,8 @@
   selected={true},
   bibtex_show={true}, 
   abstract={Structures matter in single image super resolution (SISR). Recent studies benefiting from generative adversarial network (GAN) have promoted the development of SISR by recovering photo-realistic images. However, there are always undesired structural distortions in the recovered images. In this paper, we propose a structure-preserving super resolution method to alleviate the above issue while maintaining the merits of GAN-based methods to generate perceptual-pleasant details. Specifically, we exploit gradient maps of images to guide the recovery in two aspects. On the one hand, we restore high-resolution gradient maps by a gradient branch to provide additional structure priors for the SR process. On the other hand, we propose a gradient loss which imposes a second-order restriction on the super-resolved images. Along with the previous image-space loss functions, the gradient-space objectives help generative networks concentrate more on geometric structures. Moreover, our method is model-agnostic, which can be potentially used for off-the-shelf SR networks. Experimental results show that we achieve the best PI and LPIPS performance and meanwhile comparable PSNR and SSIM compared with state-of-the-art perceptual-driven SR methods. Visual results demonstrate our superiority in restoring structures while generating natural SR images.},
-  pdf={https://openaccess.thecvf.com/content_CVPR_2020/html/Ma_Structure-Preserving_Super_ResolutionWith_Gradient_Guidance_CVPR_2020_paper.html},
-  code={https://github.com/Maclory/SPSR}
+  code={https://github.com/Maclory/SPSR},
+  html={https://ieeexplore.ieee.org/document/9156994}
 }
 
 
