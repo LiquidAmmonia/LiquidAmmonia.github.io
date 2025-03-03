@@ -1,7 +1,7 @@
-@ARTICLE{cheng2024colornerf,
-  author    = {Cheng, Yean and Wan, Renjie and Weng, Shuchen and Zhu, Chengxuan and Chang, Yakun and Shi, Boxin},
-  journal = {The 38th AAAI Conference on Artificial Intelligence},
-  title     = {[Oral] Colorizing Monochromatic Radiance Fields},
+@ARTICLE{hong2025motionbench,
+  author    = {Wenyi Hong and Yean Cheng and Zhuoyi Yang and Weihan Wang and Lefan Wang and Xiaotao Gu and Shiyu Huang and Yuxiao Dong and Jie Tang},
+  journal = {CVPR 2025},
+  title     = {MotionBench: Benchmarking and Improving Fine-grained Video Motion Understanding for Vision Language Models},
   year      = {2024},
   volume={},
   number={},
@@ -9,11 +9,48 @@
   doi = {},
   selected  = {true},
   bibtex_show={true},
-  preview   = {colornerf.png},
-  abstract={Though Neural Radiance Fields (NeRF) can produce colorful 3D representations of the world by using a set of 2D images, such ability becomes non-existent when only monochromatic images are provided. Since color is necessary in representing the world, reproducing color from monochromatic radiance fields becomes crucial. To achieve this goal, instead of manipulating the monochromatic radiance fields directly, we consider it as a representation-prediction task in the Lab color space. By first constructing the luminance and density representation using monochromatic images, our prediction stage can recreate color representation on the basis of an image colorization module. We then reproduce a colorful implicit model through the representation of luminance, density, and color. Extensive experiments have been conducted to validate the effectiveness of our approaches.},
-  arxiv={http://arxiv.org/abs/2402.12184},
-  html={https://ojs.aaai.org/index.php/AAAI/article/view/27895},
-  code={https://github.com/LiquidAmmonia/colornerf}
+  preview   = {motionbench.png},
+  abstract={In recent years, vision language models (VLMs) have made significant advancements in video understanding. However, a crucial capability - fine-grained motion comprehension - remains under-explored in current benchmarks. To address this gap, we propose MotionBench, a comprehensive evaluation benchmark designed to assess the fine-grained motion comprehension of video understanding models. MotionBench evaluates models' motion-level perception through six primary categories of motion-oriented question types and includes data collected from diverse sources, ensuring a broad representation of real-world video content. Experimental results reveal that existing VLMs perform poorly in understanding fine-grained motions. To enhance VLM's ability to perceive fine-grained motion within a limited sequence length of LLM, we conduct extensive experiments reviewing VLM architectures optimized for video feature compression and propose a novel and efficient Through-Encoder (TE) Fusion method. Experiments show that higher frame rate inputs and TE Fusion yield improvements in motion understanding, yet there is still substantial room for enhancement. Our benchmark aims to guide and motivate the development of more capable video understanding models, emphasizing the importance of fine-grained motion comprehension.},
+  arxiv={https://arxiv.org/abs/2501.02955},
+  html={https://motion-bench.github.io/},
+  code={https://github.com/THUDM/MotionBench}
+}
+
+@ARTICLE{yang2025cogvideox,
+
+  author    = {Yang, Zhuoyi and Teng, Jiayan and Zheng, Wendi and Ding, Ming and Huang, Shiyu and Xu, Jiazheng and Yang, Yuanming and Hong, Wenyi and Zhang, Xiaohan and Feng, Guanyu and others},
+  journal = {The Thirteenth International Conference on Learning Representations},
+  title     = {CogVideoX: Text-to-Video Diffusion Models with An Expert Transformer},
+  year      = {2025},
+  volume={},
+  number={},
+  pages={1-10},
+  doi = {},
+  selected  = {true},
+  bibtex_show={true},
+  preview   = {cogvideox},
+  abstract={We present CogVideoX, a large-scale text-to-video generation model based on diffusion transformer, which can generate 10-second continuous videos that align seamlessly with text prompts, with a frame rate of 16 fps and resolution of 768 x 1360 pixels. Previous video generation models often struggled with limited motion and short durations. It is especially difficult to generate videos with coherent narratives based on text. We propose several designs to address these issues. First, we introduce a 3D Variational Autoencoder (VAE) to compress videos across spatial and temporal dimensions, enhancing both the compression rate and video fidelity. Second, to improve text-video alignment, we propose an expert transformer with expert adaptive LayerNorm to facilitate the deep fusion between the two modalities. Third, by employing progressive training and multi-resolution frame packing, CogVideoX excels at generating coherent, long-duration videos with diverse shapes and dynamic movements. In addition, we develop an effective pipeline that includes various pre-processing strategies for text and video data. Our innovative video captioning model significantly improves generation quality and semantic alignment. Results show that CogVideoX achieves state-of-the-art performance in both automated benchmarks and human evaluation.},
+  arxiv={https://arxiv.org/abs/2408.06072},
+  html={https://github.com/THUDM/CogVideo},
+  code={https://github.com/THUDM/CogVideo}
+}
+
+@ARTICLE{hong2024cogvlm2,
+  author    = {Hong, Wenyi and Wang, Weihan and Ding, Ming and Yu, Wenmeng and Lv, Qingsong and Wang, Yan and Cheng, Yean and Huang, Shiyu and Ji, Junhui and Xue, Zhao and others},
+  journal = {Technical Report},
+  title     = {CogVLM2: Visual Language Models for Image and Video Understanding},
+  year      = {2024},
+  volume={},
+  number={},
+  pages={1-10},
+  doi = {},
+  selected  = {true},
+  bibtex_show={true},
+  preview   = {cogvlm2.png},
+  abstract={Beginning with VisualGLM and CogVLM, we are continuously exploring VLMs in pursuit of enhanced vision-language fusion, efficient higher-resolution architecture, and broader modalities and applications. Here we propose the CogVLM2 family, a new generation of visual language models for image and video understanding including CogVLM2, CogVLM2-Video and GLM-4V. As an image understanding model, CogVLM2 inherits the visual expert architecture with improved training recipes in both pre-training and post-training stages, supporting input resolution up to 1344×1344 pixels. As a video understanding model, CogVLM2-Video integrates multi-frame input with timestamps and proposes automated temporal grounding data construction. Notably, CogVLM2 family has achieved state-of-the-art results on benchmarks like MMBench, MM-Vet, TextVQA, MVBench and VCGBench.},
+  arxiv={https://arxiv.org/abs/2408.16500},
+  html={https://github.com/THUDM/CogVLM2},
+  code={https://github.com/THUDM/CogVLM2}
 }
 
 
