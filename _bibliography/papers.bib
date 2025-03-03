@@ -28,7 +28,7 @@
   doi = {},
   selected  = {true},
   bibtex_show={true},
-  preview   = {cogvideox},
+  preview   = {cogvideox.png},
   abstract={We present CogVideoX, a large-scale text-to-video generation model based on diffusion transformer, which can generate 10-second continuous videos that align seamlessly with text prompts, with a frame rate of 16 fps and resolution of 768 x 1360 pixels. Previous video generation models often struggled with limited motion and short durations. It is especially difficult to generate videos with coherent narratives based on text. We propose several designs to address these issues. First, we introduce a 3D Variational Autoencoder (VAE) to compress videos across spatial and temporal dimensions, enhancing both the compression rate and video fidelity. Second, to improve text-video alignment, we propose an expert transformer with expert adaptive LayerNorm to facilitate the deep fusion between the two modalities. Third, by employing progressive training and multi-resolution frame packing, CogVideoX excels at generating coherent, long-duration videos with diverse shapes and dynamic movements. In addition, we develop an effective pipeline that includes various pre-processing strategies for text and video data. Our innovative video captioning model significantly improves generation quality and semantic alignment. Results show that CogVideoX achieves state-of-the-art performance in both automated benchmarks and human evaluation.},
   arxiv={https://arxiv.org/abs/2408.06072},
   html={https://github.com/THUDM/CogVideo},
@@ -52,6 +52,17 @@
   html={https://github.com/THUDM/CogVLM2},
   code={https://github.com/THUDM/CogVLM2}
 }
+
+@ARTICLE{cheng2024colornerf,
+  author    = {Cheng, Yean and Wan, Renjie and Weng, Shuchen and Zhu, Chengxuan and Chang, Yakun and Shi, Boxin},
+  journal = {The 38th AAAI Conference on Artificial Intelligence},
+  title     = {\textcolor{blue}{[Oral] Colorizing Monochromatic Radiance Fields}},
+  preview   = {colornerf.png},
+  abstract={Though Neural Radiance Fields (NeRF) can produce colorful 3D representations of the world by using a set of 2D images, such ability becomes non-existent when only monochromatic images are provided. Since color is necessary in representing the world, reproducing color from monochromatic radiance fields becomes crucial. To achieve this goal, instead of manipulating the monochromatic radiance fields directly, we consider it as a representation-prediction task in the Lab color space. By first constructing the luminance and density representation using monochromatic images, our prediction stage can recreate color representation on the basis of an image colorization module. We then reproduce a colorful implicit model through the representation of luminance, density, and color. Extensive experiments have been conducted to validate the effectiveness of our approaches.},
+  arxiv={http://arxiv.org/abs/2402.12184},
+  html={https://ojs.aaai.org/index.php/AAAI/article/view/27895},
+  code={https://github.com/LiquidAmmonia/colornerf}
+
 
 
 @ARTICLE{10301699,
