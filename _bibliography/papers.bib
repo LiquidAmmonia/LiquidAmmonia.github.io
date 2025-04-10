@@ -53,6 +53,22 @@
   code={https://github.com/THUDM/CogVLM2}
 }
 
+@ARTICLE{cheng2024dreampolish,
+  author    = {Cheng, Yean and Cai, Ziqi and Ding, Ming and Zheng, Wendi and Huang, Shiyu and Dong, Yuxiao and Tang, Jie and Shi, Boxin
+   and Wan, Renjie and Weng, Shuchen and Zhu, Chengxuan and Chang, Yakun and Shi, Boxin},
+  year={2024},
+  eprint={2411.01602},
+  archivePrefix={arXiv},
+  primaryClass={cs.CV},
+  url={https://arxiv.org/abs/2411.01602}, 
+  selected  = {true},
+  bibtex_show={true},
+  preview   = {dreampolish.png},
+  abstract={We introduce DreamPolish, a text-to-3D generation model that excels in producing refined geometry and high-quality textures. In the geometry construction phase, our approach leverages multiple neural representations to enhance the stability of the synthesis process. Instead of relying solely on a view-conditioned diffusion prior in the novel sampled views, which often leads to undesired artifacts in the geometric surface, we incorporate an additional normal estimator to polish the geometry details, conditioned on viewpoints with varying field-of-views. We propose to add a surface polishing stage with only a few training steps, which can effectively refine the artifacts attributed to limited guidance from previous stages and produce 3D objects with more desirable geometry. The key topic of texture generation using pretrained text-to-image models is to find a suitable domain in the vast latent distribution of these models that contains photorealistic and consistent renderings. In the texture generation phase, we introduce a novel score distillation objective, namely domain score distillation (DSD), to guide neural representations toward such a domain. We draw inspiration from the classifier-free guidance (CFG) in textconditioned image generation tasks and show that CFG and variational distribution guidance represent distinct aspects in gradient guidance and are both imperative domains for the enhancement of texture quality. Extensive experiments show our proposed model can produce 3D assets with polished surfaces and photorealistic textures, outperforming existing state-of-the-art methods.},
+  arxiv={https://arxiv.org/abs/2411.01602},
+}
+
+
 @ARTICLE{cheng2024colornerf,
   author    = {Cheng, Yean and Wan, Renjie and Weng, Shuchen and Zhu, Chengxuan and Chang, Yakun and Shi, Boxin},
   journal = {AAAI},
