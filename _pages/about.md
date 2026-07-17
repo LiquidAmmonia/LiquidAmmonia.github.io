@@ -18,7 +18,7 @@ selected_papers: true # includes a list of papers marked as "selected={true}"
 social: true  # includes social icons at the bottom of the page
 ---
 
-I am a research engineer at [Zhipu.AI](https://www.zhipuai.cn), focusing on improving the performance of VLM's on video, alignment, reasoning, etc. My research interests lies in visual understanding and generation, language modeling and world modeling.
+I am a Member of Technical Staff at [Kimi](https://www.kimi.com) (Moonshot AI), working on agentic coding post-training. Previously, I was a research engineer at [Zhipu.AI](https://www.zhipuai.cn), where I worked on improving the performance of VLMs on video, alignment, reasoning, etc. My research interests lie in visual understanding and generation, language modeling and world modeling.
 
 I received my Master's degree from the School of Computer Science at Peking University, at [CILab](https://ci.idm.pku.edu.cn/) & [AIIC](http://aiic.pku.edu.cn/), advised by Prof. Boxin Shi and Mr. Ming Lei. I received my Bachelor of Engineering degree in Automation and Bachelor of Arts degree in Economics from Tsinghua University in 2021. My academic research topic involves 3D modeling with neural implicit representations, computational photography, and image quality enhancement.
 
