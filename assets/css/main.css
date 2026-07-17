@@ -6,17 +6,17 @@
  * Themes
  ******************************************************************************/
 :root {
-  --global-bg-color: #ffffff;
-  --global-code-bg-color: rgba(181, 9, 172, 0.05);
-  --global-text-color: #000000;
-  --global-text-color-light: #828282;
-  --global-theme-color: #B509AC;
-  --global-hover-color: #B509AC;
-  --global-footer-bg-color: #1C1C1D;
-  --global-footer-text-color: #e8e8e8;
-  --global-footer-link-color: #ffffff;
-  --global-distill-app-color: #828282;
-  --global-divider-color: rgba(0,0,0,.1);
+  --global-bg-color: #fafafa;
+  --global-code-bg-color: rgba(57, 73, 171, 0.06);
+  --global-text-color: #212121;
+  --global-text-color-light: #757575;
+  --global-theme-color: #3949ab;
+  --global-hover-color: #283593;
+  --global-footer-bg-color: #f5f5f5;
+  --global-footer-text-color: #757575;
+  --global-footer-link-color: #3949ab;
+  --global-distill-app-color: #757575;
+  --global-divider-color: rgba(0,0,0,.12);
   --global-card-bg-color: #ffffff;
 }
 :root .fa-sun {
@@ -70,6 +70,7 @@ body {
   padding-bottom: 70px;
   color: var(--global-text-color);
   background-color: var(--global-bg-color);
+  font-family: "Roboto", "Helvetica Neue", Arial, sans-serif;
 }
 body h1, body h2, body h3, body h4, body h5, body h6 {
   scroll-margin-top: 66px;
@@ -168,6 +169,17 @@ blockquote {
 
 .card {
   background-color: var(--global-card-bg-color);
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+  transition: box-shadow 0.2s ease-in-out;
+}
+.card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.14), 0 2px 4px rgba(0, 0, 0, 0.08);
+}
+.card .card-img-top {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
 }
 .card img {
   width: 100%;
@@ -231,10 +243,9 @@ blockquote {
 }
 
 .navbar {
-  box-shadow: none;
-  border-bottom: 1px solid var(--global-divider-color);
-  background-color: var(--global-bg-color);
-  opacity: 0.95;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+  border-bottom: none;
+  background-color: var(--global-card-bg-color);
 }
 
 .navbar .dropdown-menu {
@@ -549,6 +560,7 @@ footer.sticky-bottom {
   background-color: var(--global-theme-color);
   padding-left: 1rem;
   padding-right: 1rem;
+  border-radius: 4px;
 }
 .publications ol.bibliography li .abbr abbr a {
   color: white;
