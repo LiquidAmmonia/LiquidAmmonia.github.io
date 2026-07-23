@@ -137,40 +137,9 @@ def plate_drift():
     im.save("assets/img/plate-drift.webp", "WEBP", quality=86, method=6)
 
 
-def portrait_xerox():
-    """Brightened grayscale photo + faint halftone screen + torn edge.
-
-    The source photo is very low-key (dark jacket, dark background), so a pure
-    dot screen collapses into a black slab. A xeroxed-photo treatment keeps the
-    picture readable while still looking printed.
-    """
-    src = Image.open("assets/img/profile.webp").convert("L")
-    w, h = src.size
-    px = np.asarray(src, dtype=np.float32) / 255.0
-    px = np.clip(px**0.5, 0, 1)  # strong lift
-    lo, hi = np.percentile(px, 1), np.percentile(px, 99)
-    px = np.clip((px - lo) / (hi - lo), 0, 1)
-    # compress toward paper: nothing fully black, nothing fully white
-    px = 0.16 + px * 0.72
-    base = Image.fromarray((px * 255).astype(np.uint8), "L")
-    base = base.filter(ImageFilter.GaussianBlur(0.8))  # photocopy softness
-
-    # faint halftone screen on top, like a coarse print
-    screen = Image.new("L", (w, h), 0)
-    dd = ImageDraw.Draw(screen)
-    cell = 5
-    for yy in range(0, h - cell + 1, cell):
-        for xx in range(0, w - cell + 1, cell):
-            lum = px[yy : yy + cell, xx : xx + cell].mean()
-            r = cell * 0.5 * (1.0 - lum)
-            if r > 0.5:
-                cx2, cy2 = xx + cell / 2, yy + cell / 2
-                dd.ellipse([cx2 - r, cy2 - r, cx2 + r, cy2 + r], fill=52)
-    img = Image.merge("RGB", (base, base, base))
-    img = Image.composite(Image.new("RGB", (w, h), INK), img, screen.point(lambda v: v * 0.55))
-
-    # torn edge: jittered perimeter polygon as alpha mask
-    random.seed(31)
+def torn_edge_mask(w, h, seed=31):
+    """Jittered perimeter polygon as alpha mask — a hand-torn clipping."""
+    random.seed(seed)
     pts = []
     steps = 26
     for i in range(steps + 1):  # top, left→right
@@ -183,15 +152,52 @@ def portrait_xerox():
         pts.append((random.uniform(0, 7), h - h * i / steps))
     mask = Image.new("L", (w, h), 0)
     ImageDraw.Draw(mask).polygon(pts, fill=255)
-    mask = mask.filter(ImageFilter.GaussianBlur(0.6))
+    return mask.filter(ImageFilter.GaussianBlur(0.6))
 
-    img = add_grain(img, sigma=4.0, seed=2).convert("RGBA")
-    img.putalpha(mask)
-    img.save("assets/img/portrait-halftone.webp", "WEBP", quality=88, method=6)
+
+def portrait_cobalt():
+    """Two-color screenprint portrait: flat paper / cobalt / ink tint bands.
+
+    The source photo is very low-key, so a dot screen collapses into a blob.
+    Posterized flat tints — like a layered screenprint — keep the face in
+    paper and light cobalt while the dark jacket becomes solid print ink.
+    """
+    src = Image.open("assets/img/profile.webp").convert("L")
+    w0, h0 = src.size
+    # crop to head & shoulders so the subject fills the frame
+    src = src.crop((int(w0 * 0.14), int(h0 * 0.08), int(w0 * 0.88), int(h0 * 0.86)))
+    w, h = src.size
+    px = np.asarray(src, dtype=np.float32) / 255.0
+    px = np.clip(px**0.45, 0, 1)  # strong lift for the low-key photo
+    lo, hi = np.percentile(px, 2), np.percentile(px, 98)
+    px = np.clip((px - lo) / (hi - lo), 0, 1)
+
+    # flatten photographic texture into print-like shapes
+    sm = Image.fromarray((px * 255).astype(np.uint8), "L")
+    sm = sm.filter(ImageFilter.MedianFilter(9)).filter(ImageFilter.GaussianBlur(1.2))
+    a = np.asarray(sm, dtype=np.float32) / 255.0
+
+    # four flat bands of ink
+    band_ink = np.clip((0.25 - a) / 0.05, 0, 1) * 0.88          # deep shadow → black ink
+    band_deep = np.clip((0.52 - a) / 0.06, 0, 1) * np.clip((a - 0.20) / 0.06, 0, 1) * 0.55
+    band_light = np.clip((0.76 - a) / 0.06, 0, 1) * np.clip((a - 0.46) / 0.06, 0, 1) * 0.20
+    cobalt_amt = np.clip(band_deep + band_light, 0, 1)
+
+    paper_arr = np.array(PAPER, dtype=np.float32)
+    cobalt_arr = np.array(COBALT, dtype=np.float32)
+    ink_arr = np.array(INK, dtype=np.float32)
+    out = paper_arr[None, None, :] * (1 - np.clip(cobalt_amt + band_ink, 0, 1)[..., None])
+    out = out + cobalt_arr[None, None, :] * cobalt_amt[..., None]
+    out = out + ink_arr[None, None, :] * band_ink[..., None]
+    img = Image.fromarray(np.clip(out, 0, 255).astype(np.uint8), "RGB")
+
+    img = add_grain(img, sigma=3.2, seed=2).convert("RGBA")
+    img.putalpha(torn_edge_mask(w, h))
+    img.save("assets/img/portrait-cobalt.webp", "WEBP", quality=88, method=6)
 
 
 if __name__ == "__main__":
     plate_sun()
     plate_drift()
-    portrait_xerox()
+    portrait_cobalt()
     print("done")
