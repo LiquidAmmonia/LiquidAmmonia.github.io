@@ -130,26 +130,13 @@ a:hover { color: var(--cobalt); border-bottom-color: var(--cobalt); }
 .mastnav a:hover { text-decoration: underline; text-underline-offset: 3px; }
 .mastnav span { color: var(--ink-faint); margin: 0 0.55rem; }
 
-/* portrait: grayscale halftone specimen on a cobalt block */
+/* portrait: xerox-printed specimen on a cobalt block */
 .portrait { margin: 0; }
 .portrait .frame { position: relative; width: clamp(150px, 24vw, 205px); }
 .portrait img {
   display: block;
   width: 100%;
   height: auto;
-  filter: grayscale(1) contrast(1.06) brightness(1.02);
-  clip-path: polygon(2% 1%, 97% 0%, 100% 4%, 99% 97%, 95% 100%, 3% 99%, 0% 96%, 1% 3%);
-}
-/* halftone dots */
-.portrait .frame::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: radial-gradient(circle, rgba(38, 35, 25, 0.5) 0.55px, transparent 1.05px);
-  background-size: 4.5px 4.5px;
-  opacity: 0.2;
-  mix-blend-mode: multiply;
-  clip-path: polygon(2% 1%, 97% 0%, 100% 4%, 99% 97%, 95% 100%, 3% 99%, 0% 96%, 1% 3%);
 }
 .portrait .block {
   position: absolute;
@@ -168,6 +155,38 @@ a:hover { color: var(--cobalt); border-bottom-color: var(--cobalt); }
   letter-spacing: 0.1em;
   color: var(--ink-faint);
 }
+
+/* art plates: riso prints pasted into the page */
+.plate {
+  float: right;
+  width: clamp(140px, 22vw, 176px);
+  margin: 0.3rem 0 1.6rem 2rem;
+  transform: rotate(0.8deg);
+}
+.plate img { display: block; width: 100%; height: auto; }
+.plate figcaption,
+.endpaper figcaption {
+  margin-top: 0.8rem;
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  color: var(--ink-faint);
+}
+
+.endpaper {
+  width: clamp(150px, 24vw, 190px);
+  margin: clamp(5.5rem, 15vh, 9rem) auto 0;
+  text-align: center;
+}
+.endpaper img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transform: rotate(-0.6deg);
+}
+
+/* vertical ghost note in the margin (wide screens only) */
+.marginalia { display: none; }
 
 /* scissors cut line */
 .cutline {
@@ -208,11 +227,20 @@ main { display: block; }
   flex: 1;
   border-top: 1px solid var(--hairline);
 }
-.sq {
+.mark {
   width: 0.62em;
   height: 0.62em;
   background: var(--cobalt);
   flex: none;
+}
+.mark.circ { border-radius: 50%; }
+.mark.half {
+  border-radius: 50%;
+  background: linear-gradient(90deg, var(--cobalt) 50%, transparent 50%);
+  box-shadow: inset 0 0 0 1px var(--cobalt);
+}
+.mark.tri {
+  clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
 }
 
 .sec p { margin: 0 0 1.35rem; }
@@ -383,6 +411,25 @@ main { display: block; }
   .ledger time { padding-top: 0; }
   .paper { grid-template-columns: 2.2rem 1fr; gap: 0.9rem; }
   .ghost { font-size: 1.6rem; }
+  .plate { float: none; margin: 0 auto 1.8rem; }
+}
+
+/* wide margin: vertical ghost note beside publications */
+@media (min-width: 1180px) {
+  .sec { position: relative; }
+  .marginalia {
+    display: block;
+    position: absolute;
+    left: -9rem;
+    top: 0.5rem;
+    margin: 0;
+    writing-mode: vertical-rl;
+    font-family: var(--mono);
+    font-size: 0.64rem;
+    letter-spacing: 0.32em;
+    color: #d9d0b8;
+    user-select: none;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
