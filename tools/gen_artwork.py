@@ -97,9 +97,9 @@ def plate_sun():
 
     f_l = ImageFont.truetype(MONO, 21)
     f_s = ImageFont.truetype(MONO, 17)
-    tracked(d, (66, 72), "PLATE 1 · A STUDY IN COBALT", f_l, INK + (205,), 6)
+    tracked(d, (66, 72), "PLATE 2 · A STUDY IN COBALT", f_l, INK + (205,), 6)
     tracked(d, (66, H - 112), "YEAN CHENG — NOTES ON INTELLIGENCE", f_s, INK + (150,), 5)
-    tracked(d, (W - 150, H - 112), "№ 01", f_s, INK + (150,), 4)
+    tracked(d, (W - 150, H - 112), "№ 02", f_s, INK + (150,), 4)
 
     im = im.filter(ImageFilter.GaussianBlur(0.35))
     im = add_grain(im.convert("RGB"), sigma=2.6, seed=9)
@@ -128,9 +128,9 @@ def plate_drift():
 
     f_l = ImageFont.truetype(MONO, 21)
     f_s = ImageFont.truetype(MONO, 17)
-    tracked(d, (66, 72), "PLATE 2 · DRIFT", f_l, INK + (205,), 6)
+    tracked(d, (66, 72), "PLATE 1 · DRIFT", f_l, INK + (205,), 6)
     tracked(d, (66, H - 112), "AFTER A LONG TRAINING RUN", f_s, INK + (150,), 5)
-    tracked(d, (W - 150, H - 112), "№ 02", f_s, INK + (150,), 4)
+    tracked(d, (W - 150, H - 112), "№ 01", f_s, INK + (150,), 4)
 
     im = im.filter(ImageFilter.GaussianBlur(0.35))
     im = add_grain(im.convert("RGB"), sigma=2.6, seed=4)
@@ -172,15 +172,15 @@ def portrait_cobalt():
     lo, hi = np.percentile(px, 2), np.percentile(px, 98)
     px = np.clip((px - lo) / (hi - lo), 0, 1)
 
-    # flatten photographic texture into print-like shapes
+    # flatten photographic texture into print-like shapes, but keep features
     sm = Image.fromarray((px * 255).astype(np.uint8), "L")
-    sm = sm.filter(ImageFilter.MedianFilter(9)).filter(ImageFilter.GaussianBlur(1.2))
+    sm = sm.filter(ImageFilter.MedianFilter(5)).filter(ImageFilter.GaussianBlur(0.9))
     a = np.asarray(sm, dtype=np.float32) / 255.0
 
-    # four flat bands of ink
-    band_ink = np.clip((0.25 - a) / 0.05, 0, 1) * 0.88          # deep shadow → black ink
-    band_deep = np.clip((0.52 - a) / 0.06, 0, 1) * np.clip((a - 0.20) / 0.06, 0, 1) * 0.55
-    band_light = np.clip((0.76 - a) / 0.06, 0, 1) * np.clip((a - 0.46) / 0.06, 0, 1) * 0.20
+    # soft-graded bands of ink
+    band_ink = np.clip((0.25 - a) / 0.09, 0, 1) * 0.88          # deep shadow → black ink
+    band_deep = np.clip((0.52 - a) / 0.10, 0, 1) * np.clip((a - 0.20) / 0.10, 0, 1) * 0.55
+    band_light = np.clip((0.76 - a) / 0.10, 0, 1) * np.clip((a - 0.46) / 0.10, 0, 1) * 0.20
     cobalt_amt = np.clip(band_deep + band_light, 0, 1)
 
     paper_arr = np.array(PAPER, dtype=np.float32)
@@ -189,6 +189,17 @@ def portrait_cobalt():
     out = paper_arr[None, None, :] * (1 - np.clip(cobalt_amt + band_ink, 0, 1)[..., None])
     out = out + cobalt_arr[None, None, :] * cobalt_amt[..., None]
     out = out + ink_arr[None, None, :] * band_ink[..., None]
+
+    # ink line pass: outline eyes / glasses / jaw so the face reads clearly
+    ed = sm.filter(ImageFilter.FIND_EDGES)
+    ea = np.asarray(ed, dtype=np.float32) / 255.0
+    ea = np.clip((ea - 0.14) / 0.18, 0, 1) ** 1.3 * 0.6
+    # keep the line work on the subject, fade it out in the background
+    yy, xx = np.mgrid[0:h, 0:w]
+    dist2 = ((xx - 0.5 * w) / (0.55 * w)) ** 2 + ((yy - 0.45 * h) / (0.62 * h)) ** 2
+    ea = ea * np.clip(1.3 - dist2, 0, 1)
+    out = out * (1 - ea[..., None]) + ink_arr[None, None, :] * ea[..., None]
+
     img = Image.fromarray(np.clip(out, 0, 255).astype(np.uint8), "RGB")
 
     img = add_grain(img, sigma=3.2, seed=2).convert("RGBA")
