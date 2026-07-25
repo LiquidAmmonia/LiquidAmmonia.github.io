@@ -116,15 +116,18 @@ def plate_drift():
     d.ellipse([cx - r + 6, cy - r + 5, cx + r + 6, cy + r + 5], outline=INK + (100,), width=2)
     im.alpha_composite(cobalt_disc(W, r, seed=6), (cx - W // 2, cy - W // 2))
 
-    # words drifting down-left, fading out
-    words = ["agentic", "coding", "visual", "world", "modeling"]
-    f = ImageFont.truetype(MONO, 26)
-    x, y = 590.0, 560.0
+    # words rising from the bottom, gathering into the cobalt disc
+    words = ["3D", "quant", "vision", "coding", "agent"]
+    f = ImageFont.truetype(MONO, 46)
+    x, y = 150.0, 1120.0
     for i, w in enumerate(words):
-        alpha = 170 - i * 26
-        d.text((x, y), w, font=f, fill=INK + (max(alpha, 40),))
-        x -= 118 + (i % 2) * 30
-        y += 128
+        alpha = min(95 + i * 30, 220)  # darker as they rise
+        layer = Image.new("RGBA", (380, 100), (0, 0, 0, 0))
+        ImageDraw.Draw(layer).text((10, 10), w, font=f, fill=INK + (alpha,))
+        layer = layer.rotate(random.uniform(-3.5, 3.5), expand=True, resample=Image.BICUBIC)
+        im.alpha_composite(layer, (int(x), int(y)))
+        x += 92 + (i % 2) * 36
+        y -= 132
 
     f_l = ImageFont.truetype(MONO, 21)
     f_s = ImageFont.truetype(MONO, 17)
@@ -165,7 +168,9 @@ def portrait_cobalt():
     src = Image.open("assets/img/profile.webp").convert("L")
     w0, h0 = src.size
     # crop to head & shoulders so the subject fills the frame
-    src = src.crop((int(w0 * 0.14), int(h0 * 0.08), int(w0 * 0.88), int(h0 * 0.86)))
+    src = src.crop((int(w0 * 0.16), int(h0 * 0.10), int(w0 * 0.86), int(h0 * 0.84)))
+    # supersample: render at 2x, downscale at the end for smooth print edges
+    src = src.resize((src.width * 2, src.height * 2), Image.LANCZOS)
     w, h = src.size
     px = np.asarray(src, dtype=np.float32) / 255.0
     px = np.clip(px**0.45, 0, 1)  # strong lift for the low-key photo
@@ -201,9 +206,10 @@ def portrait_cobalt():
     out = out * (1 - ea[..., None]) + ink_arr[None, None, :] * ea[..., None]
 
     img = Image.fromarray(np.clip(out, 0, 255).astype(np.uint8), "RGB")
+    img = img.resize((w // 2, h // 2), Image.LANCZOS)  # downscale from supersample
 
     img = add_grain(img, sigma=3.2, seed=2).convert("RGBA")
-    img.putalpha(torn_edge_mask(w, h))
+    img.putalpha(torn_edge_mask(w // 2, h // 2))
     img.save("assets/img/portrait-cobalt.webp", "WEBP", quality=88, method=6)
 
 
